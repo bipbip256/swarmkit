@@ -246,6 +246,7 @@ message ContainerSpec {
 	// task will exit and a new task will be rescheduled elsewhere. A container
 	// is considered unhealthy after `Retries` number of consecutive failures.
 	HealthConfig healthcheck = 16;
+	bool privileged = 19;
 }
 
 // EndpointSpec defines the properties that can be configured to
