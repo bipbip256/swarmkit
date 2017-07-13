@@ -272,6 +272,15 @@ func (f *PlatformFilter) platformEqual(imgPlatform, nodePlatform api.Platform) b
 	if nodePlatform.Architecture == "aarch64" {
 		nodePlatform.Architecture = "arm64"
 	}	
+	
+	// normalize "armv6l and armv7l" architectures to "arm"
+	if imgPlatform.Architecture == "armv6l" || imgPlatform.Architecture == "armv7l" {
+		imgPlatform.Architecture = "arm"
+	}
+	if nodePlatform.Architecture == "armv6l" || nodePlatform.Architecture == "armv7l" {
+		nodePlatform.Architecture = "arm"
+	}	
+	
 
 	if (imgPlatform.Architecture == "" || imgPlatform.Architecture == nodePlatform.Architecture) && (imgPlatform.OS == "" || imgPlatform.OS == nodePlatform.OS) {
 		return true
